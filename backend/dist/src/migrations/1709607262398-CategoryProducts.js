@@ -1,0 +1,97 @@
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CategoryProducts1709607262398 = void 0;
+const typeorm_1 = require("typeorm");
+class CategoryProducts1709607262398 {
+    up(queryRunner) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield queryRunner.createTable(new typeorm_1.Table({
+                name: "category",
+                columns: [
+                    {
+                        name: "id",
+                        type: "int",
+                        isPrimary: true,
+                        isGenerated: true,
+                        generationStrategy: "increment",
+                    },
+                    {
+                        name: "title",
+                        type: "varchar",
+                        length: "255",
+                        isNullable: false,
+                    },
+                ],
+            }), true);
+            yield queryRunner.createTable(new typeorm_1.Table({
+                name: "product",
+                columns: [
+                    {
+                        name: "id",
+                        type: "int",
+                        isPrimary: true,
+                        isGenerated: true,
+                        generationStrategy: "increment",
+                    },
+                    {
+                        name: "title",
+                        type: "varchar",
+                        length: "255",
+                        isNullable: false,
+                    },
+                    {
+                        name: "slug",
+                        type: "varchar",
+                        length: "255",
+                        isNullable: false,
+                    },
+                    {
+                        name: "description",
+                        type: "text",
+                        isNullable: false,
+                    },
+                    {
+                        name: "imageUrl",
+                        type: "text",
+                        isNullable: false,
+                    },
+                    {
+                        name: "price",
+                        type: "float",
+                        isNullable: false,
+                    },
+                    {
+                        name: "categoryId",
+                        type: "int",
+                        isNullable: false,
+                    },
+                ],
+                foreignKeys: [
+                    {
+                        columnNames: ["categoryId"],
+                        referencedTableName: "category",
+                        referencedColumnNames: ["id"],
+                        onDelete: "CASCADE",
+                    },
+                ],
+            }), true);
+        });
+    }
+    down(queryRunner) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield queryRunner.dropTable("product");
+            yield queryRunner.dropTable("category");
+        });
+    }
+}
+exports.CategoryProducts1709607262398 = CategoryProducts1709607262398;
+//# sourceMappingURL=1709607262398-CategoryProducts.js.map

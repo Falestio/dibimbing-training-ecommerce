@@ -1,0 +1,1 @@
+- fix endpoint to update product, make sure it can update category

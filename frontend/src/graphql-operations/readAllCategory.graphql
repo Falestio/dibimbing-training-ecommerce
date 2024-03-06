@@ -1,0 +1,6 @@
+query readAllCategory {
+    categories {
+        id
+        title
+    }
+}
